@@ -14,7 +14,7 @@ console.log(data);
 // Don't worry about adding cells or text yet, just try appending the `tr` elements.
 // Step 3:  Use `Object.entries` to console.log each alien report value
 // Step 4: Use d3 to append 1 cell per alien report value (date,city,st,country, shape, duration)
-function buildtable(tableData) {
+function buildtable(data) {
     data.forEach((alienSighting) => {
     // console.log(alienSighting);
     var row = tbody.append("tr");
@@ -25,7 +25,7 @@ function buildtable(tableData) {
   });
 });
 };
-buildtable(tableData)
+buildtable(data)
 
 //Activity 14-3-5, make button a variable
 var button = d3.select("#filter-btn");
@@ -33,10 +33,10 @@ var button = d3.select("#filter-btn");
 //Activities 14-3-8 and 9 to handle click and filter
 button.on("click", function eventHandler(sighting) {
     tbody.html('');
-    var sDate = d3.select("#datetime").property('value');
-    console.log(sDate);
+    var inDate = d3.select("#datetime").property('value');
+    console.log(inDate);
     console.log(d3.event.target);
-    var filteredSightings = data.filter((row) => row.datetime==sDate);
+    var filteredSightings = data.filter((row)=>row.datetime==inDate);
     console.log(filteredSightings);
     buildtable(filteredSightings);
 });
@@ -44,5 +44,5 @@ button.on("click", function eventHandler(sighting) {
 
 //Create a fiter fx for clicking button
 function pickaDate (sighting) {
-    return sighting.datetime==sDate;
+    return sighting.datetime==inDate;
 }
